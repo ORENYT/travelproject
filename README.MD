@@ -4,6 +4,8 @@ REST API for managing travel projects and places built with FastAPI + SQLite.
 
 ## Setup
 
+Required: Python, tested on Python3.12
+
 ```bash
 git clone https://github.com/ORENYT/travelproject.git
 cd travel-planner
