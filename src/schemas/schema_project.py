@@ -27,6 +27,7 @@ class ProjectOut(BaseModel):
     description: Optional[str]
     start_date: Optional[date]
     places: list[PlaceOut] = []
+    is_completed: bool
 
     model_config = {"from_attributes": True}
 
@@ -37,5 +38,6 @@ class ProjectSummary(BaseModel):
     name: str
     description: Optional[str]
     start_date: Optional[date]
+    is_completed: bool
 
     model_config = {"from_attributes": True}

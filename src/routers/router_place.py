@@ -76,11 +76,13 @@ def get_place(project_id: int, place_id: int, db: Session = Depends(get_db)):
 
 @router.patch("/{place_id}", response_model=PlaceOut)
 def update_place(project_id: int, place_id: int, payload: PlaceUpdate, db: Session = Depends(get_db)):
-    get_project_or_404(project_id, db)
+    project = get_project_or_404(project_id, db)
     place = get_place_or_404(place_id, project_id, db)
 
     for field, value in payload.model_dump(exclude_unset=True).items():
         setattr(place, field, value)
+
+    project.is_completed = len(project.places) > 0 and all(p.visited for p in project.places)
 
     db.commit()
     db.refresh(place)
